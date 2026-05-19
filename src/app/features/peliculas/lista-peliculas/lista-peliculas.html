@@ -1,6 +1,7 @@
+
 @for (p of peliculas; track p.imdbID) {
   <app-tarjeta-pelicula 
     [peliculas]="p" 
-    (verDetalle)="verDetalle.emit($event)">
+    (verDetalle)="verDetalle.emit($event)"> 
   </app-tarjeta-pelicula>
 }

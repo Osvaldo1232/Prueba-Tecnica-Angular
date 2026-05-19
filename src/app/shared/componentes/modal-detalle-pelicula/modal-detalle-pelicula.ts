@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef } from '@angular/core'; 
 import { Omdb } from '../../../core/servicios/omdb';
 
 @Component({
@@ -9,12 +9,35 @@ import { Omdb } from '../../../core/servicios/omdb';
 })
 export class ModalDetallePelicula {
 
-   @Input() imdbID!: string;
-  pelicula: any;
+  private _imdbID!: string;
+  pelicula: any = null;
 
-  constructor(private omdb: Omdb) {}
+  constructor(private omdb: Omdb, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
-    this.omdb.ObtenerdetallePelicula(this.imdbID).subscribe(res => this.pelicula = res);
+  @Input()
+  set imdbID(id: string) {
+    if (id) {
+      this._imdbID = id;
+      this.cargarDetallePelicula(id);
+    }
+  }
+
+  get imdbID(): string {
+    return this._imdbID;
+  }
+
+  private cargarDetallePelicula(id: string) {
+    this.pelicula = null; 
+
+    this.omdb.ObtenerdetallePelicula(id).subscribe({
+      next: (res) => {
+        this.pelicula = res;
+        
+        this.cdr.detectChanges(); 
+      },
+      error: (err) => {
+        console.error('Error al obtener los detalles de la película:', err);
+      }
+    });
   }
 }
