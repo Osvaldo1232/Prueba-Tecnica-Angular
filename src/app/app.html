@@ -1,5 +1,6 @@
-<app-barra-busqueda (search)="Buscar($event)"></app-barra-busqueda>
 
+
+<app-barra-busqueda (search)="onBuscarPeliculas($event)"></app-barra-busqueda>
 <app-lista-peliculas 
   [peliculas]="peliculas" 
   (verDetalle)="abrirModal($event)">
@@ -16,5 +17,12 @@
 
   </div>
 }
+
+@if (mensajeError) {
+   <div class="error-card">
+    {{ mensajeError }}
+    </div>
+}
+
 
 <router-outlet />

@@ -56,3 +56,13 @@
     opacity: 1;
   }
 }
+
+.error-card {
+  max-width: 400px;
+  margin: 16px auto;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 14px;
+}

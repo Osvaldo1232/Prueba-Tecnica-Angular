@@ -7,7 +7,8 @@ import { ModalDetallePelicula } from './shared/componentes/modal-detalle-pelicul
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,
+  imports: [
+    RouterOutlet,
     BarraBusqueda,
     ListaPeliculas,
     ModalDetallePelicula
@@ -16,41 +17,50 @@ import { ModalDetallePelicula } from './shared/componentes/modal-detalle-pelicul
   styleUrl: './app.css'
 })
 export class App {
+mensajeError = '';
+  peliculas: any[] = [];
+  idSeleccionado: string | null = null;
+  protected readonly title = signal('PruebaTecnica');
 
-   peliculas: any[] = [];
-idSeleccionado: string | null = null;
   constructor(private omdb: Omdb) {}
 
-Buscar(params: any) {
+  onBuscarPeliculas(params: any) {
+    if (!params || !params.titulo || params.titulo.trim() === '') {
+      return;
+    }
 
-  if (!params.titulo || params.titulo.trim() === '') {
-    return;
+    this.omdb.BuscarPelicula(params.titulo, params.tipo, params.ano)
+      .subscribe({
+        next: (res) => {
+          if (res.Response === 'True') {
+            this.peliculas = res.Search.map((p: any) => ({
+              imdbID: p.imdbID,
+              titulo: p.Title,
+              ano: p.Year,
+              imagen: p.Poster,
+              tipo: p.Type
+            }));
+
+             this.mensajeError="";
+          } else {
+            this.peliculas = [];
+            this.mensajeError = res.Error || 'No se encontraron resultados';
+           
+
+          }
+        },
+        error: (err) => {
+          console.error('Error en la petición de OMDb:', err);
+          this.peliculas = [];
+        }
+      });
   }
 
- 
-  this.omdb.BuscarPelicula(params.titulo, params.tipo, params.ano)
-  .subscribe(res => {
-    if (res.Response === 'True') {
-      this.peliculas = res.Search.map((p: any) => ({
-        imdbID: p.imdbID,
-        titulo: p.Title,
-        ano: p.Year,
-        imagen: p.Poster,
-        tipo: p.Type
-      }));
-    } else {
-      this.peliculas = [];
-    }
-  });
-}
-
-abrirModal(imdbID: string) {
+  abrirModal(imdbID: string) {
     this.idSeleccionado = imdbID;
   }
 
   cerrarModal() {
     this.idSeleccionado = null;
   }
-
-  protected readonly title = signal('PruebaTecnica');
 }
