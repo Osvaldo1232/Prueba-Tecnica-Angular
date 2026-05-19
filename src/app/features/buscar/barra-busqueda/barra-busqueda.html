@@ -1,0 +1,8 @@
+<input [(ngModel)]="titulo" placeholder="Buscar película" />
+<select [(ngModel)]="tipo">
+  <option value="">Todos</option>
+  <option value="movie">Películas</option>
+  <option value="series">Series</option>
+</select>
+<input [(ngModel)]="ano" placeholder="Año" />
+<button type="button" (click)="Buscar()">Buscar</button>

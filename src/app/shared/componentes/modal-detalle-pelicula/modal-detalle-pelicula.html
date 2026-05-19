@@ -1,0 +1,27 @@
+@if (pelicula) {
+  <div class="modal-body">
+    <div class="modal-poster">
+      <img [src]="pelicula.Poster !== 'N/A' ? pelicula.Poster : 'placeholder.png'" alt="Póster de {{ pelicula.Title }}" />
+    </div>
+    
+    <div class="modal-info">
+      <h2>{{ pelicula.Title }}</h2>
+      <p class="meta-datos"><strong>Año:</strong> {{ pelicula.Year }} | <strong>Duración:</strong> {{ pelicula.Runtime }}</p>
+      
+      <p><strong>Género:</strong> {{ pelicula.Genre }}</p>
+      <p><strong>Director:</strong> {{ pelicula.Director }}</p>
+      <p><strong>Reparto:</strong> {{ pelicula.Actors }}</p>
+      
+      <div class="sinopsis-caja">
+        <strong>Sinopsis completa:</strong>
+        <p>{{ pelicula.Plot }}</p>
+      </div>
+
+      <p class="calificacion">⭐ <strong>Rating:</strong> {{ pelicula.imdbRating }} / 10</p>
+    </div>
+  </div>
+} @else {
+  <div class="modal-loading">
+    <p>Cargando detalles de la película...</p>
+  </div>
+}

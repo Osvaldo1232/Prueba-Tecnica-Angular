@@ -1,0 +1,5 @@
+<div class="card">
+  <img [src]="peliculas.imagen !== 'N/A' ? peliculas.imagen : 'placeholder.png'" />
+  <h3>{{ peliculas.titulo }} ({{ peliculas.ano }})</h3>
+  <button (click)="masinfor()">Más info</button>
+</div>

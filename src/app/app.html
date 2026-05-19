@@ -1,0 +1,20 @@
+<app-barra-busqueda (search)="Buscar($event)"></app-barra-busqueda>
+
+<!-- Escuchamos el evento verDetalle que viene desde la lista y abrimos el modal -->
+<app-lista-peliculas 
+  [peliculas]="peliculas" 
+  (verDetalle)="abrirModal($event)">
+</app-lista-peliculas>
+
+<!-- Condición para renderizar el modal flotante -->
+@if (idSeleccionado) {
+  <div class="modal-overlay" (click)="cerrarModal()">
+    <div class="modal-wrapper" (click)="$event.stopPropagation()">
+      <button class="btn-cerrar" (click)="cerrarModal()">✕</button>
+      
+      <!-- Invocamos tu componente pasando el ID seleccionado -->
+      <app-modal-detalle-pelicula [imdbID]="idSeleccionado"></app-modal-detalle-pelicula>
+    </div>
+  </div>
+}
+<router-outlet />

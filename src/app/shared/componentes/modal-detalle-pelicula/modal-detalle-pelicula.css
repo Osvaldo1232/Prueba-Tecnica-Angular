@@ -1,0 +1,58 @@
+.modal-body {
+  display: flex;
+  gap: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.modal-poster img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.modal-info {
+  flex: 1;
+}
+
+.modal-info h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  color: #111;
+}
+
+.meta-datos {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.sinopsis-caja {
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-left: 4px solid #007bff;
+  border-radius: 0 6px 6px 0;
+  margin: 15px 0;
+}
+
+.sinopsis-caja p {
+  margin: 6px 0 0 0;
+  line-height: 1.5;
+}
+
+.modal-loading {
+  text-align: center;
+  padding: 40px;
+  font-family: sans-serif;
+  color: #555;
+}
+
+@media (max-width: 600px) {
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+}

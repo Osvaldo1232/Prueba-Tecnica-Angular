@@ -1,0 +1,73 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center;
+}
+
+input, select, button {
+  font-size: 1rem;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+  height: 44px;
+}
+
+input:focus, select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+input[placeholder="Buscar película"] {
+  flex: 2 1 200px;
+}
+
+select {
+  flex: 1 1 150px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+input[placeholder="Año"] {
+  flex: 1 1 100px;
+}
+
+button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  flex: 1 1 120px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus-visible {
+  outline: 3px solid #ffc107;
+}
+
+@media (max-width: 576px) {
+  :host {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  input, select, button {
+    flex: 1 1 auto !important;
+    width: 100%;
+  }
+}
